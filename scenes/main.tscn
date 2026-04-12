@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://csltfns3knwtk"]
+
+[ext_resource type="PackedScene" path="res://scenes/shaker.tscn" id="1_o5qli"]
+[ext_resource type="Shader" uid="uid://2t8d6x5tc6gj" path="res://shaders/chrome.gdshader" id="2_0wfyh"]
+
+[sub_resource type="Environment" id="Environment_0wfyh"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 3.0
+glow_strength = 1.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sugp2"]
+shader = ExtResource("2_0wfyh")
+shader_parameter/amount = 0.3
+
+[node name="Main" type="Node2D" unique_id=354009461]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=871670834]
+environment = SubResource("Environment_0wfyh")
+
+[node name="Shaker" parent="." unique_id=749971859 node_paths=PackedStringArray("camera") instance=ExtResource("1_o5qli")]
+camera = NodePath("../MainCamera")
+
+[node name="MainCamera" type="Camera2D" parent="." unique_id=1009752072]
+anchor_mode = 0
+
+[node name="chrome" type="ColorRect" parent="." unique_id=1390541990]
+z_index = 4096
+material = SubResource("ShaderMaterial_sugp2")
+offset_left = -20.0
+offset_top = -24.0
+offset_right = 1304.0
+offset_bottom = 737.0
+metadata/_edit_lock_ = true
