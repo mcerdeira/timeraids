@@ -1,13 +1,28 @@
 extends Node
+var TOTAL_TIME_LEFT = 0
+var TIME_LEFT = 0
+var minutes = 0
+var seconds = 0
+var recording_obj = null
+var GAMEOVER = false
 var player_obj = null
 var shaker_obj = null
 var particle = preload("res://scenes/particle2.tscn")
 var FULLSCREEN = false
 var Main = null
 var LEVEL = 0
+var RECORDINGS_IDX = 0
+var RECORDINGS = []
 
 func init_vars():
+	TOTAL_TIME_LEFT = 10
+	TIME_LEFT = TOTAL_TIME_LEFT
 	LEVEL = 1
+	minutes = 0
+	seconds = 0
+	GAMEOVER = false
+	RECORDINGS_IDX = 0
+	RECORDINGS = []
 	
 func _ready():
 	init_vars()
