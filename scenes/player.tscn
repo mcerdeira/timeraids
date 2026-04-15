@@ -5,6 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://54v814bi2842" path="res://sprites/player_spr_1.png" id="3_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://74pc44pptjqk" path="res://sprites/player_spr_3.png" id="3_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://b0f7kcn4feekg" path="res://sprites/player_spr_2.png" id="4_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://clp6mhg6ud2fh" path="res://sprites/machine_player_spr_0.png" id="4_y4r1p"]
+[ext_resource type="Texture2D" uid="uid://b3ejbscx6tpov" path="res://sprites/machine_player_spr_3.png" id="5_d2wvv"]
+[ext_resource type="Texture2D" uid="uid://b1fg2gegxn7ob" path="res://sprites/machine_player_spr_1.png" id="6_3v2ag"]
+[ext_resource type="Texture2D" uid="uid://dh40umsg2lwto" path="res://sprites/player_gun.png" id="6_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://vqlrxm7asnkn" path="res://sprites/machine_player_spr_2.png" id="7_jej6c"]
+[ext_resource type="Texture2D" uid="uid://cckc6nw5xkwed" path="res://sprites/machine_player_gun.png" id="10_y4r1p"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3vyb7"]
 animations = [{
@@ -17,6 +23,31 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_y4r1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_d2wvv")
+}],
+"loop": true,
+"name": &"machine_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_y4r1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3v2ag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jej6c")
+}],
+"loop": true,
+"name": &"machine_running",
 "speed": 5.0
 }, {
 "frames": [{
@@ -34,10 +65,30 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_y4r1p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_tuyoq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d2wvv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_y4r1p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
 size = Vector2(20, 24)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_qlg0r"]
 
 [node name="Player" type="CharacterBody2D" unique_id=1502648767]
 collision_layer = 2
@@ -46,11 +97,23 @@ script = ExtResource("1_3vyb7")
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1949041322]
 sprite_frames = SubResource("SpriteFrames_3vyb7")
 animation = &"idle"
-frame_progress = 0.232115
+
+[node name="pistol" type="AnimatedSprite2D" parent="." unique_id=1861465803]
+visible = false
+sprite_frames = SubResource("SpriteFrames_y4r1p")
+offset = Vector2(32, -17)
+
+[node name="point" type="Marker2D" parent="pistol" unique_id=862195990]
+position = Vector2(63, -2)
+
+[node name="machine" type="AnimatedSprite2D" parent="." unique_id=358139278]
+visible = false
+sprite_frames = SubResource("SpriteFrames_d2wvv")
+offset = Vector2(32, -17)
+
+[node name="point" type="Marker2D" parent="machine" unique_id=799192724]
+position = Vector2(66, -4)
 
 [node name="collider" type="CollisionShape2D" parent="." unique_id=1190132693]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_3vyb7")
-
-[node name="gun" type="AnimatedSprite2D" parent="." unique_id=1861465803]
-sprite_frames = SubResource("SpriteFrames_qlg0r")

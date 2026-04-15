@@ -1,6 +1,9 @@
 extends CharacterBody2D
 const SPEED = 275.0
 const JUMP_VELOCITY = -500.0
+var shoot_delay = 0.0
+var shoot_delay_total = 0.0
+var bullet_obj = preload("res://scenes/bullet.tscn")
 var jumping = false
 var canjump = true
 var moving = false
@@ -11,12 +14,33 @@ var direction_shoot = "R"
 var frame = 0
 var recorded = null
 var playing = false
+var prefix = "machine"
+var gun_sprite : AnimatedSprite2D = null
+var gun_shoot_point : Marker2D = null
+var bullet_ttl = 1.0
 
 func _ready() -> void:
 	add_to_group("players")
-	Global.player_obj = self
+	if prefix == "":
+		bullet_ttl = 1.0
+		gun_sprite = $pistol
+		gun_shoot_point = $pistol/point
+		shoot_delay_total = 0.4
+	elif prefix == "machine":
+		bullet_ttl = 0.2
+		gun_sprite = $machine
+		gun_shoot_point = $machine/point
+		shoot_delay_total = 0.1
+		
+	gun_sprite.visible = true
+	$sprite.play(prefix + "_idle")
+	if recorded == null:
+		Global.player_obj = self
 
 func _physics_process(delta: float) -> void:
+	if shoot_delay > 0:
+		shoot_delay -= 1 * delta
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
@@ -91,38 +115,38 @@ func _physics_process(delta: float) -> void:
 		velocity.x = -1 * SPEED
 		moving = true
 		$sprite.flip_h = true
-		$gun.scale.x = -1
+		gun_sprite.scale.x = -1
 	elif !dont_move and right:
 		direction_shoot = "R"
 		velocity.x = 1 * SPEED
 		moving = true
 		$sprite.flip_h = false
-		$gun.scale.x = 1
+		gun_sprite.scale.x = 1
 	else:
 		velocity.x = 0
 		
 	if !dont_move and up and right:
 		direction_shoot = "RU"
-		$gun.rotation_degrees = 313
+		gun_sprite.rotation_degrees = 313
 	elif !dont_move and up and left:
 		direction_shoot = "LU"
-		$gun.rotation_degrees = 46
+		gun_sprite.rotation_degrees = 46
 	elif !dont_move and up:
 		direction_shoot = "U"
 		if $sprite.flip_h:
-			$gun.rotation_degrees = -270
+			gun_sprite.rotation_degrees = -270
 		else:
-			$gun.rotation_degrees = 270
+			gun_sprite.rotation_degrees = 270
 	elif !dont_move and down:
 		direction_shoot = "D"
 		if $sprite.flip_h:
-			$gun.rotation_degrees = -90
+			gun_sprite.rotation_degrees = -90
 		else:
-			$gun.rotation_degrees = 90
+			gun_sprite.rotation_degrees = 90
 			
 	else:
-		$gun.rotation_degrees = 0
-		if $gun.scale.x == -1:
+		gun_sprite.rotation_degrees = 0
+		if gun_sprite.scale.x == -1:
 			direction_shoot = "L"
 		else:
 			direction_shoot = "R"
@@ -132,11 +156,43 @@ func _physics_process(delta: float) -> void:
 		
 	if !Global.GAMEOVER:
 		if moving:
-			$sprite.play("running")
+			$sprite.play(prefix + "_running")
 		else:
-			$sprite.play("idle")
+			$sprite.play(prefix + "_idle")
 
 		move_and_slide()
 
 func shoot():
-	pass
+	if shoot_delay <= 0:
+		Global.shaker_obj.shake(3.0, 1.0)
+		shoot_delay = shoot_delay_total
+		var buff = 0.0
+		var dir = 0.0
+
+		var bullet = bullet_obj.instantiate()
+		bullet.global_position = gun_shoot_point.global_position
+		bullet.rotation_degrees = gun_sprite.rotation_degrees
+		bullet.ttl = bullet_ttl
+		if direction_shoot == "R":
+			dir = 1.0
+			bullet.direction = Vector2.RIGHT
+		if direction_shoot == "L":
+			dir = -1.0
+			bullet.direction = Vector2.LEFT
+		if direction_shoot == "U":
+			dir = 0.0
+			bullet.direction = Vector2.UP
+		if direction_shoot == "D":
+			dir = 0.0
+			bullet.direction = Vector2.DOWN
+		if direction_shoot == "RU":
+			dir = 1.0
+			bullet.direction = Vector2.from_angle(deg_to_rad(bullet.rotation_degrees))
+		if direction_shoot == "LU":
+			dir = -1.0
+			bullet.direction =  Vector2.from_angle(deg_to_rad(bullet.rotation_degrees - 180))
+		
+		get_parent().add_child(bullet)
+		
+		if moving:
+			buff = 50 * dir

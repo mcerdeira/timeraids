@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("jump"):
 			jump = true
 			
-		if Input.is_action_just_pressed("shoot"):
+		if Input.is_action_pressed("shoot"):
 			shoot = true
 			
 		if Input.is_action_pressed("left"):

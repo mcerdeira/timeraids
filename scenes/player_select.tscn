@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://co7432cxwkaw5"]
+
+[ext_resource type="Texture2D" uid="uid://clp6mhg6ud2fh" path="res://sprites/machine_player_spr_0.png" id="1_iu05h"]
+[ext_resource type="Texture2D" uid="uid://vml6wlnxwn1x" path="res://sprites/player_spr_0.png" id="2_x5nym"]
+
+[node name="PlayerSelect" type="Node2D" unique_id=63001549]
+
+[node name="PlayerSpr5" type="Sprite2D" parent="." unique_id=135483051]
+position = Vector2(327, 146)
+scale = Vector2(5, 5)
+texture = ExtResource("1_iu05h")
+
+[node name="PlayerSpr6" type="Sprite2D" parent="." unique_id=1233983927]
+position = Vector2(1260, 131.00002)
+scale = Vector2(5, 5)
+texture = ExtResource("2_x5nym")
+
+[node name="PlayerSpr7" type="Sprite2D" parent="." unique_id=1324533821]
+position = Vector2(1074, 84)
+scale = Vector2(4, 4)
+texture = ExtResource("2_x5nym")
+
+[node name="PlayerSpr8" type="Sprite2D" parent="." unique_id=1959307366]
+position = Vector2(503, 77)
+scale = Vector2(4, 4)
+texture = ExtResource("2_x5nym")
+
+[node name="PlayerSpr9" type="Sprite2D" parent="." unique_id=2009694605]
+position = Vector2(781, 54)
+scale = Vector2(4, 4)
+texture = ExtResource("2_x5nym")
+
+[node name="PlayerSpr0" type="Sprite2D" parent="." unique_id=1259776104]
+position = Vector2(788, 377)
+scale = Vector2(5, 5)
+texture = ExtResource("2_x5nym")
+
+[node name="PlayerSpr1" type="Sprite2D" parent="." unique_id=1285563408]
+position = Vector2(500.00003, 342)
+scale = Vector2(5, 5)
+texture = ExtResource("2_x5nym")
+
+[node name="PlayerSpr2" type="Sprite2D" parent="." unique_id=1829222762]
+position = Vector2(1072, 337)
+scale = Vector2(5, 5)
+texture = ExtResource("2_x5nym")
+
+[node name="PlayerSpr3" type="Sprite2D" parent="." unique_id=1244109179]
+position = Vector2(1263.0001, 245)
+scale = Vector2(5, 5)
+texture = ExtResource("2_x5nym")
+
+[node name="PlayerSpr4" type="Sprite2D" parent="." unique_id=2079818180]
+position = Vector2(310.00006, 269)
+scale = Vector2(5, 5)
+texture = ExtResource("2_x5nym")
