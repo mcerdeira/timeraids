@@ -14,7 +14,7 @@ var direction_shoot = "R"
 var frame = 0
 var recorded = null
 var playing = false
-var prefix = "machine"
+var prefix = ""
 var gun_sprite : AnimatedSprite2D = null
 var gun_shoot_point : Marker2D = null
 var bullet_ttl = 1.0
@@ -31,6 +31,11 @@ func _ready() -> void:
 		gun_sprite = $machine
 		gun_shoot_point = $machine/point
 		shoot_delay_total = 0.1
+	elif prefix == "bomb":
+		bullet_ttl = 0.0
+		gun_sprite = $dummy
+		gun_shoot_point = null
+		shoot_delay_total = 0.0
 		
 	gun_sprite.visible = true
 	$sprite.play(prefix + "_idle")
@@ -163,36 +168,40 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func shoot():
-	if shoot_delay <= 0:
-		Global.shaker_obj.shake(3.0, 1.0)
-		shoot_delay = shoot_delay_total
-		var buff = 0.0
-		var dir = 0.0
+	if prefix == "bomb":
+		#TODO: Explotar
+		pass
+	else:
+		if shoot_delay <= 0:
+			Global.shaker_obj.shake(3.0, 1.0)
+			shoot_delay = shoot_delay_total
+			var buff = 0.0
+			var dir = 0.0
 
-		var bullet = bullet_obj.instantiate()
-		bullet.global_position = gun_shoot_point.global_position
-		bullet.rotation_degrees = gun_sprite.rotation_degrees
-		bullet.ttl = bullet_ttl
-		if direction_shoot == "R":
-			dir = 1.0
-			bullet.direction = Vector2.RIGHT
-		if direction_shoot == "L":
-			dir = -1.0
-			bullet.direction = Vector2.LEFT
-		if direction_shoot == "U":
-			dir = 0.0
-			bullet.direction = Vector2.UP
-		if direction_shoot == "D":
-			dir = 0.0
-			bullet.direction = Vector2.DOWN
-		if direction_shoot == "RU":
-			dir = 1.0
-			bullet.direction = Vector2.from_angle(deg_to_rad(bullet.rotation_degrees))
-		if direction_shoot == "LU":
-			dir = -1.0
-			bullet.direction =  Vector2.from_angle(deg_to_rad(bullet.rotation_degrees - 180))
-		
-		get_parent().add_child(bullet)
-		
-		if moving:
-			buff = 50 * dir
+			var bullet = bullet_obj.instantiate()
+			bullet.global_position = gun_shoot_point.global_position
+			bullet.rotation_degrees = gun_sprite.rotation_degrees
+			bullet.ttl = bullet_ttl
+			if direction_shoot == "R":
+				dir = 1.0
+				bullet.direction = Vector2.RIGHT
+			if direction_shoot == "L":
+				dir = -1.0
+				bullet.direction = Vector2.LEFT
+			if direction_shoot == "U":
+				dir = 0.0
+				bullet.direction = Vector2.UP
+			if direction_shoot == "D":
+				dir = 0.0
+				bullet.direction = Vector2.DOWN
+			if direction_shoot == "RU":
+				dir = 1.0
+				bullet.direction = Vector2.from_angle(deg_to_rad(bullet.rotation_degrees))
+			if direction_shoot == "LU":
+				dir = -1.0
+				bullet.direction =  Vector2.from_angle(deg_to_rad(bullet.rotation_degrees - 180))
+			
+			get_parent().add_child(bullet)
+			
+			if moving:
+				buff = 50 * dir

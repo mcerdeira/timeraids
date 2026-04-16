@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://dq24pjx58kiic"]
 
-[ext_resource type="Script" path="res://sprites/spark.gd" id="1_4uljo"]
-[ext_resource type="Texture2D" uid="uid://c5sgkqa6l6lnh" path="res://sprites/shoot_spark1.png" id="1_atvt1"]
-[ext_resource type="Texture2D" uid="uid://glpns0pm7mqx" path="res://sprites/shoot_spark2.png" id="2_b6qeg"]
-[ext_resource type="Texture2D" uid="uid://hdemj4dm08ti" path="res://sprites/shoot_spark3.png" id="3_55sbf"]
-[ext_resource type="Texture2D" uid="uid://cnpwq265lfeob" path="res://sprites/shoot_spark4.png" id="4_vbbno"]
-[ext_resource type="Texture2D" uid="uid://c2advd4nlw1qu" path="res://sprites/shoot_spark5.png" id="5_udeq6"]
-[ext_resource type="Texture2D" uid="uid://vtesx0rq8pmq" path="res://sprites/shoot_spark6.png" id="6_xugo4"]
-[ext_resource type="Texture2D" uid="uid://bk758d5jb2ffv" path="res://sprites/shoot_spark7.png" id="7_gtsdn"]
-[ext_resource type="Texture2D" uid="uid://rrwdw2mjdj47" path="res://sprites/shoot_spark8.png" id="8_lwg8x"]
-[ext_resource type="Texture2D" uid="uid://cnyx0o8hfst2i" path="res://sprites/shoot_spark9.png" id="9_4s24f"]
+[ext_resource type="Script" uid="uid://dk2nxwpw2n1fi" path="res://scenes/spark.gd" id="1_2cftu"]
+[ext_resource type="Texture2D" uid="uid://bv7hen2tdi0t0" path="res://sprites/shoot_spark1.png" id="1_atvt1"]
+[ext_resource type="Texture2D" uid="uid://jqfjs0fgupnx" path="res://sprites/shoot_spark2.png" id="2_b6qeg"]
+[ext_resource type="Texture2D" uid="uid://ct455gcr707r0" path="res://sprites/shoot_spark3.png" id="3_55sbf"]
+[ext_resource type="Texture2D" uid="uid://dplbbww051kif" path="res://sprites/shoot_spark4.png" id="4_vbbno"]
+[ext_resource type="Texture2D" uid="uid://b5n0fm4ll6gsm" path="res://sprites/shoot_spark5.png" id="5_udeq6"]
+[ext_resource type="Texture2D" uid="uid://clioadioh7y3k" path="res://sprites/shoot_spark6.png" id="6_xugo4"]
+[ext_resource type="Texture2D" uid="uid://dkj0s0c6w5sue" path="res://sprites/shoot_spark7.png" id="7_gtsdn"]
+[ext_resource type="Texture2D" uid="uid://c87d4hxo8slvs" path="res://sprites/shoot_spark8.png" id="8_lwg8x"]
+[ext_resource type="Texture2D" uid="uid://c5kq323q7d4kk" path="res://sprites/shoot_spark9.png" id="9_4s24f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uv2nn"]
 animations = [{
@@ -46,10 +46,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Spark" type="Node2D"]
-script = ExtResource("1_4uljo")
+[node name="Spark" type="Node2D" unique_id=174258848]
+script = ExtResource("1_2cftu")
 
-[node name="sprite" type="AnimatedSprite2D" parent="."]
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1780812335]
 sprite_frames = SubResource("SpriteFrames_uv2nn")
 autoplay = "default"
 speed_scale = 5.0
