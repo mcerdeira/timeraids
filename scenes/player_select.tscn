@@ -1,57 +1,56 @@
 [gd_scene format=3 uid="uid://co7432cxwkaw5"]
 
-[ext_resource type="Texture2D" uid="uid://clp6mhg6ud2fh" path="res://sprites/machine_player_spr_0.png" id="1_iu05h"]
-[ext_resource type="Texture2D" uid="uid://vml6wlnxwn1x" path="res://sprites/player_spr_0.png" id="2_x5nym"]
-[ext_resource type="Texture2D" uid="uid://dionu2xcljvfa" path="res://sprites/bomb_player_spr_3.png" id="3_x5nym"]
+[ext_resource type="Script" uid="uid://cafwihd1ulgj0" path="res://scenes/player_select.gd" id="1_hx7tf"]
+[ext_resource type="PackedScene" uid="uid://bu2tn5hosrnhm" path="res://scenes/player_sel.tscn" id="2_iu05h"]
 
 [node name="PlayerSelect" type="Node2D" unique_id=63001549]
+script = ExtResource("1_hx7tf")
 
-[node name="PlayerSpr5" type="Sprite2D" parent="." unique_id=135483051]
-position = Vector2(327, 146)
-scale = Vector2(5, 5)
-texture = ExtResource("1_iu05h")
+[node name="background" type="ColorRect" parent="." unique_id=1478349963]
+offset_left = -312.0
+offset_top = -179.0
+offset_right = 312.0
+offset_bottom = 145.0
+color = Color(0.04755766, 0.047557645, 0.047557645, 1)
 
-[node name="PlayerSpr6" type="Sprite2D" parent="." unique_id=1233983927]
-position = Vector2(1260, 131.00002)
-scale = Vector2(5, 5)
-texture = ExtResource("2_x5nym")
+[node name="lbl_title" type="Label" parent="." unique_id=1567517126]
+offset_left = -312.0
+offset_top = -165.0
+offset_right = 312.0
+offset_bottom = -120.0
+theme_override_font_sizes/font_size = 32
+text = "Hero Select"
+horizontal_alignment = 1
 
-[node name="PlayerSpr7" type="Sprite2D" parent="." unique_id=1324533821]
-position = Vector2(1074, 84)
-scale = Vector2(4, 4)
-texture = ExtResource("2_x5nym")
+[node name="lbl_name" type="Label" parent="." unique_id=128154457]
+offset_left = -312.0
+offset_top = 50.0
+offset_right = 312.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 16
+text = "Hero Select"
+horizontal_alignment = 1
 
-[node name="PlayerSpr8" type="Sprite2D" parent="." unique_id=1959307366]
-position = Vector2(503, 77)
-scale = Vector2(4, 4)
-texture = ExtResource("2_x5nym")
+[node name="Chars" type="Node2D" parent="." unique_id=1233075235]
 
-[node name="PlayerSpr9" type="Sprite2D" parent="." unique_id=2009694605]
-position = Vector2(781, 54)
-scale = Vector2(4, 4)
-texture = ExtResource("2_x5nym")
+[node name="PlayerSel" parent="Chars" unique_id=1665876233 instance=ExtResource("2_iu05h")]
 
-[node name="PlayerSpr0" type="Sprite2D" parent="." unique_id=1259776104]
-position = Vector2(788, 377)
-scale = Vector2(5, 5)
-texture = ExtResource("2_x5nym")
+[node name="PlayerSel2" parent="Chars" unique_id=105983684 instance=ExtResource("2_iu05h")]
+char = 1
 
-[node name="PlayerSpr1" type="Sprite2D" parent="." unique_id=1285563408]
-position = Vector2(500, 318.00003)
-scale = Vector2(5, 5)
-texture = ExtResource("3_x5nym")
+[node name="PlayerSel3" parent="Chars" unique_id=330635169 instance=ExtResource("2_iu05h")]
+char = 2
 
-[node name="PlayerSpr2" type="Sprite2D" parent="." unique_id=1829222762]
-position = Vector2(1072, 337)
-scale = Vector2(5, 5)
-texture = ExtResource("2_x5nym")
+[node name="PlayerSel4" parent="Chars" unique_id=757855291 instance=ExtResource("2_iu05h")]
 
-[node name="PlayerSpr3" type="Sprite2D" parent="." unique_id=1244109179]
-position = Vector2(1263.0001, 245)
-scale = Vector2(5, 5)
-texture = ExtResource("2_x5nym")
+[node name="PlayerSel5" parent="Chars" unique_id=1398055145 instance=ExtResource("2_iu05h")]
 
-[node name="PlayerSpr4" type="Sprite2D" parent="." unique_id=2079818180]
-position = Vector2(310.00006, 269)
-scale = Vector2(5, 5)
-texture = ExtResource("2_x5nym")
+[node name="PlayerSel6" parent="Chars" unique_id=1523133101 instance=ExtResource("2_iu05h")]
+
+[node name="PlayerSel7" parent="Chars" unique_id=707602563 instance=ExtResource("2_iu05h")]
+
+[node name="PlayerSel8" parent="Chars" unique_id=854672682 instance=ExtResource("2_iu05h")]
+
+[node name="PlayerSel9" parent="Chars" unique_id=2108984 instance=ExtResource("2_iu05h")]
+
+[node name="PlayerSel10" parent="Chars" unique_id=1064066350 instance=ExtResource("2_iu05h")]

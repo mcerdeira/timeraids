@@ -14,6 +14,8 @@ var LEVEL = 0
 var RECORDINGS_IDX = 0
 var RECORDINGS = []
 
+var character_names = ["Pistol Dude", "Machine Gunno", "Bombo!"]
+
 func init_vars():
 	TOTAL_TIME_LEFT = 10
 	TIME_LEFT = TOTAL_TIME_LEFT

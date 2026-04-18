@@ -103,7 +103,7 @@ metadata/_edit_lock_ = true
 position = Vector2(285, 224)
 
 [node name="PlayerSelect" parent="." unique_id=63001549 instance=ExtResource("6_tefeu")]
-visible = false
-position = Vector2(192, 146)
+position = Vector2(960, 540)
+scale = Vector2(2, 2)
 
 [connection signal="timeout" from="RecordingMan/Timer" to="RecordingMan" method="_on_timer_timeout"]
