@@ -42,15 +42,22 @@ char = 1
 char = 2
 
 [node name="PlayerSel4" parent="Chars" unique_id=757855291 instance=ExtResource("2_iu05h")]
+char = 3
 
 [node name="PlayerSel5" parent="Chars" unique_id=1398055145 instance=ExtResource("2_iu05h")]
+char = 4
 
 [node name="PlayerSel6" parent="Chars" unique_id=1523133101 instance=ExtResource("2_iu05h")]
+char = -1
 
 [node name="PlayerSel7" parent="Chars" unique_id=707602563 instance=ExtResource("2_iu05h")]
+char = -1
 
 [node name="PlayerSel8" parent="Chars" unique_id=854672682 instance=ExtResource("2_iu05h")]
+char = -1
 
 [node name="PlayerSel9" parent="Chars" unique_id=2108984 instance=ExtResource("2_iu05h")]
+char = -1
 
 [node name="PlayerSel10" parent="Chars" unique_id=1064066350 instance=ExtResource("2_iu05h")]
+char = -1

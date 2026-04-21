@@ -36,6 +36,11 @@ func _ready() -> void:
 		gun_sprite = $dummy
 		gun_shoot_point = null
 		shoot_delay_total = 0.0
+	elif prefix == "moth":
+		bullet_ttl = 0.2
+		gun_sprite = $machine
+		gun_shoot_point = $machine/point
+		shoot_delay_total = 0.1
 		
 	gun_sprite.visible = true
 	$sprite.play(prefix + "_idle")

@@ -15,6 +15,14 @@
 [ext_resource type="Texture2D" uid="uid://dh40umsg2lwto" path="res://sprites/player_gun.png" id="6_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://vqlrxm7asnkn" path="res://sprites/machine_player_spr_2.png" id="7_jej6c"]
 [ext_resource type="Texture2D" uid="uid://cckc6nw5xkwed" path="res://sprites/machine_player_gun.png" id="10_y4r1p"]
+[ext_resource type="Texture2D" uid="uid://7ihgo45eiu1q" path="res://sprites/moth_player_spr_0.png" id="14_qfm1y"]
+[ext_resource type="Texture2D" uid="uid://eom4y6q88b8j" path="res://sprites/moth_player_spr_3.png" id="15_fulsm"]
+[ext_resource type="Texture2D" uid="uid://doy1oe158pb3q" path="res://sprites/moth_player_spr_1.png" id="16_4r5pv"]
+[ext_resource type="Texture2D" uid="uid://8whoafoyaf5l" path="res://sprites/moth_player_spr_2.png" id="17_60mlk"]
+[ext_resource type="Texture2D" uid="uid://vhac7eqih4qa" path="res://sprites/rock_player_spr_0.png" id="18_4ni07"]
+[ext_resource type="Texture2D" uid="uid://1kk231bd0m5r" path="res://sprites/rock_player_spr_3.png" id="19_l71n6"]
+[ext_resource type="Texture2D" uid="uid://ca6ek3irejb5j" path="res://sprites/rock_player_spr_1.png" id="20_ke2ow"]
+[ext_resource type="Texture2D" uid="uid://dg1six2jx2f6s" path="res://sprites/rock_player_spr_2.png" id="21_ujl30"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3vyb7"]
 animations = [{
@@ -83,6 +91,50 @@ animations = [{
 "loop": true,
 "name": &"machine_running",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_qfm1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_fulsm")
+}],
+"loop": true,
+"name": &"moth_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_4r5pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_60mlk")
+}],
+"loop": true,
+"name": &"moth_running",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_4ni07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_l71n6")
+}],
+"loop": true,
+"name": &"rock_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_ke2ow")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ujl30")
+}],
+"loop": true,
+"name": &"rock_running",
+"speed": 5.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_oprun"]
@@ -118,8 +170,7 @@ script = ExtResource("1_3vyb7")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1949041322]
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"_running"
-frame_progress = 0.7263266
+animation = &"rock_running"
 offset = Vector2(0, -16)
 
 [node name="dummy" type="AnimatedSprite2D" parent="." unique_id=1858926175]

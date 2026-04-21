@@ -2,4 +2,7 @@ extends Node2D
 @export var char = 0
 
 func _ready() -> void:
-	$sprite.frame = char
+	if char == -1:
+		$sprite.animation = "unknown"
+	else:
+		$sprite.frame = char
