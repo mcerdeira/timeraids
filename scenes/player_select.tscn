@@ -2,34 +2,47 @@
 
 [ext_resource type="Script" uid="uid://cafwihd1ulgj0" path="res://scenes/player_select.gd" id="1_hx7tf"]
 [ext_resource type="PackedScene" uid="uid://bu2tn5hosrnhm" path="res://scenes/player_sel.tscn" id="2_iu05h"]
+[ext_resource type="StyleBox" uid="uid://cd40awexnjhvk" path="res://styles/new_style_box_flat.tres" id="2_x5nym"]
+
+[sub_resource type="Theme" id="Theme_iu05h"]
 
 [node name="PlayerSelect" type="Node2D" unique_id=63001549]
 script = ExtResource("1_hx7tf")
 
 [node name="background" type="ColorRect" parent="." unique_id=1478349963]
-offset_left = -312.0
-offset_top = -179.0
-offset_right = 312.0
-offset_bottom = 145.0
+offset_left = -237.0
+offset_top = -134.0
+offset_right = 239.0
+offset_bottom = 110.0
 color = Color(0.04755766, 0.047557645, 0.047557645, 1)
 
 [node name="lbl_title" type="Label" parent="." unique_id=1567517126]
-offset_left = -312.0
-offset_top = -165.0
-offset_right = 312.0
-offset_bottom = -120.0
+offset_left = -237.0
+offset_top = -127.0
+offset_right = 239.0
+offset_bottom = -82.0
 theme_override_font_sizes/font_size = 32
 text = "Hero Select"
 horizontal_alignment = 1
 
 [node name="lbl_name" type="Label" parent="." unique_id=128154457]
-offset_left = -312.0
+offset_left = -237.0
 offset_top = 50.0
-offset_right = 312.0
-offset_bottom = 95.0
+offset_right = 239.0
+offset_bottom = 81.0
 theme_override_font_sizes/font_size = 16
 text = "Hero Select"
 horizontal_alignment = 1
+
+[node name="btn_select" type="Button" parent="." unique_id=1008579215]
+offset_left = -19.0
+offset_top = 77.0
+offset_right = 19.0
+offset_bottom = 103.0
+theme = SubResource("Theme_iu05h")
+theme_override_styles/normal = ExtResource("2_x5nym")
+theme_override_styles/hover = ExtResource("2_x5nym")
+text = "Go!"
 
 [node name="Chars" type="Node2D" parent="." unique_id=1233075235]
 
@@ -61,3 +74,5 @@ char = -1
 
 [node name="PlayerSel10" parent="Chars" unique_id=1064066350 instance=ExtResource("2_iu05h")]
 char = -1
+
+[connection signal="pressed" from="btn_select" to="." method="_on_btn_select_pressed"]

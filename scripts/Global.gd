@@ -7,14 +7,17 @@ var recording_obj = null
 var GAMEOVER = false
 var player_obj = null
 var shaker_obj = null
+var playing = false
 var particle = preload("res://scenes/particle2.tscn")
 var FULLSCREEN = false
 var Main = null
 var LEVEL = 0
 var RECORDINGS_IDX = 0
 var RECORDINGS = []
+var RECORDINGS_PLAYER = []
 
 var character_names = ["Pistol", "Machine", "Bombo!", "Moth Man", "Rock-O", "??"]
+var character_ids = ["", "machine", "bomb", "moth", "rock", "unknown"]
 
 func init_vars():
 	TOTAL_TIME_LEFT = 10
@@ -22,9 +25,11 @@ func init_vars():
 	LEVEL = 1
 	minutes = 0
 	seconds = 0
+	playing = false
 	GAMEOVER = false
 	RECORDINGS_IDX = 0
 	RECORDINGS = []
+	RECORDINGS_PLAYER = []
 	
 func _ready():
 	init_vars()

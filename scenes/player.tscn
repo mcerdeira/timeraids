@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://1kk231bd0m5r" path="res://sprites/rock_player_spr_3.png" id="19_l71n6"]
 [ext_resource type="Texture2D" uid="uid://ca6ek3irejb5j" path="res://sprites/rock_player_spr_1.png" id="20_ke2ow"]
 [ext_resource type="Texture2D" uid="uid://dg1six2jx2f6s" path="res://sprites/rock_player_spr_2.png" id="21_ujl30"]
+[ext_resource type="Texture2D" uid="uid://btwwy1gjsvto2" path="res://sprites/unknown.png" id="22_l71n6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3vyb7"]
 animations = [{
@@ -135,6 +136,14 @@ animations = [{
 "loop": true,
 "name": &"rock_running",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_l71n6")
+}],
+"loop": true,
+"name": &"unknown_idle",
+"speed": 5.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_oprun"]
@@ -170,7 +179,7 @@ script = ExtResource("1_3vyb7")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1949041322]
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"rock_running"
+animation = &"unknown_idle"
 offset = Vector2(0, -16)
 
 [node name="dummy" type="AnimatedSprite2D" parent="." unique_id=1858926175]

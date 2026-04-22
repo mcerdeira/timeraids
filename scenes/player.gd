@@ -14,13 +14,20 @@ var direction_shoot = "R"
 var frame = 0
 var recorded = null
 var playing = false
-var prefix = ""
+var prefix = "unknown"
 var gun_sprite : AnimatedSprite2D = null
 var gun_shoot_point : Marker2D = null
 var bullet_ttl = 1.0
 
 func _ready() -> void:
 	add_to_group("players")
+	set_init(prefix)
+	
+func set_init(_prefix):
+	prefix = _prefix
+	$pistol.visible = false
+	$machine.visible = false
+	
 	if prefix == "":
 		bullet_ttl = 1.0
 		gun_sprite = $pistol
@@ -38,9 +45,19 @@ func _ready() -> void:
 		shoot_delay_total = 0.0
 	elif prefix == "moth":
 		bullet_ttl = 0.2
-		gun_sprite = $machine
-		gun_shoot_point = $machine/point
-		shoot_delay_total = 0.1
+		gun_sprite = $dummy
+		gun_shoot_point = null
+		shoot_delay_total = 0.0
+	elif prefix == "rock":
+		bullet_ttl = 0.2
+		gun_sprite = $dummy
+		gun_shoot_point = null
+		shoot_delay_total = 0.0
+	elif prefix == "unknown":
+		bullet_ttl = 0.2
+		gun_sprite = $dummy
+		gun_shoot_point = null
+		shoot_delay_total = 0.0
 		
 	gun_sprite.visible = true
 	$sprite.play(prefix + "_idle")
@@ -70,7 +87,7 @@ func _physics_process(delta: float) -> void:
 	var shoot = false
 	
 	if recorded:
-		if playing:
+		if Global.playing:
 			if frame < recorded.size():
 				var _Input = recorded[frame]
 				jump = _Input.jump
@@ -81,20 +98,15 @@ func _physics_process(delta: float) -> void:
 				shoot = _Input.shoot
 				
 				frame += 1
-		else:
-			if Input.is_action_just_pressed("debug_record"):
-				playing = true
+
 	else:
-		if playing:
+		if Global.playing:
 			jump = Input.is_action_just_pressed("jump")
 			left = Input.is_action_pressed("left")
 			right = Input.is_action_pressed("right")
 			up = Input.is_action_pressed("up")
 			down = Input.is_action_pressed("down")
 			shoot = Input.is_action_pressed("shoot")
-		else:
-			if Input.is_action_just_pressed("debug_record"):
-				playing = true
 		
 	if !dont_move and jump and (is_on_floor() or (canjump)):
 		if !is_on_floor():
@@ -173,6 +185,8 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func shoot():
+	if gun_shoot_point == null:
+		return
 	if prefix == "bomb":
 		#TODO: Explotar
 		pass

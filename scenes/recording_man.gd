@@ -8,28 +8,34 @@ func _ready() -> void:
 	calc_time()
 	current_record = []
 	Global.recording_obj = self
+	var idx = 0
 	if Global.RECORDINGS.size() > 0:
 		for r in Global.RECORDINGS:
 			var p = player_o.instantiate()
 			p.global_position = $"../Player".global_position
 			p.recorded = r
+			p.set_init(Global.RECORDINGS_PLAYER[idx])
 			add_child(p)
+			idx += 1
 
 func end_recording():
 	recording = false
 	Global.RECORDINGS.append(current_record)
+	Global.RECORDINGS_PLAYER.append(Global.player_obj.prefix)
 	Global.RECORDINGS_IDX += 1
+	Global.playing = false
 	get_tree().reload_current_scene()
+	
+func debug_record():
+	if !recording:
+		#if Input.is_action_just_pressed("debug_record"):
+		recording = true
+		$Timer.start()
+	else:
+		#if Input.is_action_just_pressed("debug_record"):
+		end_recording()
 
 func _physics_process(delta: float) -> void:
-	if !recording:
-		if Input.is_action_just_pressed("debug_record"):
-			recording = true
-			$Timer.start()
-	else:
-		if Input.is_action_just_pressed("debug_record"):
-			end_recording()
-			
 	if recording:
 		var jump = false
 		var left = false
