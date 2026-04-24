@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://ca6ek3irejb5j" path="res://sprites/rock_player_spr_1.png" id="20_ke2ow"]
 [ext_resource type="Texture2D" uid="uid://dg1six2jx2f6s" path="res://sprites/rock_player_spr_2.png" id="21_ujl30"]
 [ext_resource type="Texture2D" uid="uid://btwwy1gjsvto2" path="res://sprites/unknown.png" id="22_l71n6"]
+[ext_resource type="Texture2D" uid="uid://dtkthuobokjte" path="res://sprites/shield.png" id="25_ke2ow"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3vyb7"]
 animations = [{
@@ -173,13 +174,24 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
 size = Vector2(20, 24)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ujl30"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_ke2ow")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D" unique_id=1502648767]
 collision_layer = 2
 script = ExtResource("1_3vyb7")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1949041322]
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"unknown_idle"
+animation = &"rock_idle"
 offset = Vector2(0, -16)
 
 [node name="dummy" type="AnimatedSprite2D" parent="." unique_id=1858926175]
@@ -206,3 +218,10 @@ position = Vector2(66, -4)
 [node name="collider" type="CollisionShape2D" parent="." unique_id=1190132693]
 position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_3vyb7")
+
+[node name="shield" type="AnimatedSprite2D" parent="." unique_id=482011591]
+visible = false
+self_modulate = Color(1, 1, 1, 0.39215687)
+position = Vector2(0, -12)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ujl30")

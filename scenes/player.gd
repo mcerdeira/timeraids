@@ -1,9 +1,12 @@
 extends CharacterBody2D
-const SPEED = 275.0
-const JUMP_VELOCITY = -500.0
+var SPEED = 275.0
+var JUMP_VELOCITY = -500.0
 var shoot_delay = 0.0
 var shoot_delay_total = 0.0
 var bullet_obj = preload("res://scenes/bullet.tscn")
+var explosion_obj = preload("res://scenes/explosion.tscn")
+var jump_ttl_total = 0.5
+var jump_ttl = 0.0
 var jumping = false
 var canjump = true
 var moving = false
@@ -39,16 +42,19 @@ func set_init(_prefix):
 		gun_shoot_point = $machine/point
 		shoot_delay_total = 0.1
 	elif prefix == "bomb":
+		SPEED = 375.0
 		bullet_ttl = 0.0
 		gun_sprite = $dummy
 		gun_shoot_point = null
 		shoot_delay_total = 0.0
 	elif prefix == "moth":
+		SPEED = 300.0
 		bullet_ttl = 0.2
 		gun_sprite = $dummy
 		gun_shoot_point = null
 		shoot_delay_total = 0.0
 	elif prefix == "rock":
+		SPEED = 175.0
 		bullet_ttl = 0.2
 		gun_sprite = $dummy
 		gun_shoot_point = null
@@ -70,6 +76,14 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		
+	if jumping and prefix == "moth":
+		jump_ttl -= 1 * delta
+		if jump_ttl <= 0:
+			canjump = true
+			jumping = false
+			scale_x = 3.8
+			scale_y = 0.1
 		
 	if jumping and is_on_floor():
 		canjump = true
@@ -108,10 +122,12 @@ func _physics_process(delta: float) -> void:
 			down = Input.is_action_pressed("down")
 			shoot = Input.is_action_pressed("shoot")
 		
-	if !dont_move and jump and (is_on_floor() or (canjump)):
+	if !dont_move and jump and (is_on_floor() or (canjump and prefix == "" or prefix == "moth")):
 		if !is_on_floor():
 			canjump = false
 		
+		$shield.visible = false
+		jump_ttl = jump_ttl_total
 		velocity.y = JUMP_VELOCITY
 		scale_x = 0.1
 		scale_y = 3.1
@@ -133,12 +149,14 @@ func _physics_process(delta: float) -> void:
 	$sprite.scale.y = lerp($sprite.scale.y, scale_y, 0.1)
 		
 	if !dont_move and left:
+		$shield.visible = false
 		direction_shoot = "L"
 		velocity.x = -1 * SPEED
 		moving = true
 		$sprite.flip_h = true
 		gun_sprite.scale.x = -1
 	elif !dont_move and right:
+		$shield.visible = false
 		direction_shoot = "R"
 		velocity.x = 1 * SPEED
 		moving = true
@@ -185,12 +203,19 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func shoot():
-	if gun_shoot_point == null:
-		return
+	if prefix == "rock":
+		$shield.visible = true
 	if prefix == "bomb":
-		#TODO: Explotar
-		pass
+		Global.shaker_obj.shake(10, 3)
+		var exp = explosion_obj.instantiate()
+		exp.global_position = global_position
+		get_parent().add_child(exp)
+		visible = false
+		dont_move = true
 	else:
+		if gun_shoot_point == null:
+			return
+		
 		if shoot_delay <= 0:
 			Global.shaker_obj.shake(3.0, 1.0)
 			shoot_delay = shoot_delay_total

@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://cauw6j1pv8xwd"]
+
+[ext_resource type="Script" uid="uid://du86fmf3us04v" path="res://scenes/explosion.gd" id="1_4jttm"]
+[ext_resource type="Texture2D" uid="uid://bv7hen2tdi0t0" path="res://sprites/shoot_spark1.png" id="1_vk406"]
+[ext_resource type="Texture2D" uid="uid://jqfjs0fgupnx" path="res://sprites/shoot_spark2.png" id="2_4jttm"]
+[ext_resource type="Texture2D" uid="uid://ct455gcr707r0" path="res://sprites/shoot_spark3.png" id="3_6smmu"]
+[ext_resource type="Texture2D" uid="uid://dplbbww051kif" path="res://sprites/shoot_spark4.png" id="4_l208b"]
+[ext_resource type="Texture2D" uid="uid://b5n0fm4ll6gsm" path="res://sprites/shoot_spark5.png" id="5_dvsvq"]
+[ext_resource type="Texture2D" uid="uid://clioadioh7y3k" path="res://sprites/shoot_spark6.png" id="6_4hpr0"]
+[ext_resource type="Texture2D" uid="uid://dkj0s0c6w5sue" path="res://sprites/shoot_spark7.png" id="7_dcqkm"]
+[ext_resource type="Texture2D" uid="uid://c87d4hxo8slvs" path="res://sprites/shoot_spark8.png" id="8_pw7mt"]
+[ext_resource type="Texture2D" uid="uid://c5kq323q7d4kk" path="res://sprites/shoot_spark9.png" id="9_x2c5d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3oo6d"]
+radius = 71.610054
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3oo6d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vk406")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4jttm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6smmu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l208b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dvsvq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4hpr0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dcqkm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_pw7mt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_x2c5d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Explosion" type="Area2D" unique_id=558884410]
+script = ExtResource("1_4jttm")
+
+[node name="collider" type="CollisionShape2D" parent="." unique_id=2099170412]
+position = Vector2(-12, -11)
+shape = SubResource("CircleShape2D_3oo6d")
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=539672564]
+position = Vector2(-21, 24)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_3oo6d")
+autoplay = "default"
+frame_progress = 0.17868811
+speed_scale = 3.0
+
+[node name="sprite2" type="AnimatedSprite2D" parent="." unique_id=857974464]
+position = Vector2(34, -34)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_3oo6d")
+autoplay = "default"
+frame_progress = 0.4092307
+speed_scale = 3.0
+
+[node name="sprite3" type="AnimatedSprite2D" parent="." unique_id=1132503089]
+position = Vector2(27, 5)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_3oo6d")
+autoplay = "default"
+frame_progress = 0.6245003
+speed_scale = 3.0
+
+[node name="sprite4" type="AnimatedSprite2D" parent="." unique_id=729935681]
+position = Vector2(-15, -51)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_3oo6d")
+autoplay = "default"
+frame_progress = 0.1596762
+speed_scale = 3.0
+
+[node name="Timer" type="Timer" parent="." unique_id=365117889]
+wait_time = 1.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
