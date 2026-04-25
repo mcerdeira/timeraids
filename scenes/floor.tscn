@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://b68vl0q13h4t6"]
+
+[ext_resource type="Script" uid="uid://ck74fsbl8f1im" path="res://scenes/floor.gd" id="1_5fpkb"]
+[ext_resource type="Texture2D" uid="uid://dlp4nrswv7vdu" path="res://sprites/floor_spr_3.png" id="1_m3ur2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7rqct"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_m3ur2")
+}],
+"loop": true,
+"name": &"red_door",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lu05r"]
+size = Vector2(32, 32)
+
+[node name="floor" type="StaticBody2D" unique_id=1601142250]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_5fpkb")
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1387100836]
+sprite_frames = SubResource("SpriteFrames_7rqct")
+animation = &"red_door"
+
+[node name="collision" type="CollisionShape2D" parent="." unique_id=1542350515]
+shape = SubResource("RectangleShape2D_lu05r")
+
+[node name="up" type="Marker2D" parent="." unique_id=734821665]
+
+[node name="down" type="Marker2D" parent="." unique_id=2041830759]
+position = Vector2(0, 32)

@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://bxxuffsswoofy"]
+
+[ext_resource type="Script" uid="uid://buhriy6wus7pg" path="res://scenes/fruit.gd" id="1_7qcgi"]
+[ext_resource type="Texture2D" uid="uid://ddnxbttmwjy6c" path="res://sprites/fruit.png" id="1_nbb5b"]
+[ext_resource type="Shader" uid="uid://ueq7wvu2hkek" path="res://scenes/fruit.gdshader" id="2_65goo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_27dx0"]
+resource_local_to_scene = true
+shader = ExtResource("2_65goo")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/shine_speed = 3.5
+shader_parameter/shine_size = 0.01
+shader_parameter/white = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aj8ha"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nbb5b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8w2fa"]
+size = Vector2(32, 32)
+
+[sub_resource type="Animation" id="Animation_ttnd8"]
+resource_name = "new_animation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -7), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.5, 1), Vector2(3, 0.4), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mgykk"]
+_data = {
+&"new_animation": SubResource("Animation_ttnd8")
+}
+
+[node name="fruit" type="Area2D" unique_id=406776151]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_7qcgi")
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=547139828]
+material = SubResource("ShaderMaterial_27dx0")
+sprite_frames = SubResource("SpriteFrames_aj8ha")
+
+[node name="collider" type="CollisionShape2D" parent="." unique_id=1205984368]
+shape = SubResource("RectangleShape2D_8w2fa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1185379972]
+libraries/ = SubResource("AnimationLibrary_mgykk")
+speed_scale = 7.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

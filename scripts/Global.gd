@@ -1,4 +1,5 @@
 extends Node
+var WIN = false
 var TOTAL_TIME_LEFT = 0
 var TIME_LEFT = 0
 var minutes = 0
@@ -11,13 +12,30 @@ var playing = false
 var particle = preload("res://scenes/particle2.tscn")
 var FULLSCREEN = false
 var Main = null
+var PORTAL = null
 var LEVEL = 0
 var RECORDINGS_IDX = 0
 var RECORDINGS = []
 var RECORDINGS_PLAYER = []
+var FRUITS = 0
+var TOTAL_FRUITS = 0
+#SFX & Music
+var BITE_SFX = null
+var PORTAL_SFX = null
+var SPRING_SFX = null
+var SWITCH_SFX = null
 
 var character_names = ["Pistol", "Machine", "Bombo!", "Moth Man", "Rock-O", "??"]
 var character_ids = ["", "machine", "bomb", "moth", "rock", "unknown"]
+
+func save_game():
+	pass
+	
+func kill_particles():
+	var part = get_tree().get_nodes_in_group("particles2") 
+	for p in part:
+		p.visible = false
+		p.queue_free()
 
 func init_vars():
 	TOTAL_TIME_LEFT = 10
@@ -30,9 +48,21 @@ func init_vars():
 	RECORDINGS_IDX = 0
 	RECORDINGS = []
 	RECORDINGS_PLAYER = []
+	WIN = false
+	PORTAL = null
+	FRUITS = 0
+	TOTAL_FRUITS = 0
+	
+func init_sfx():
+	#SFX & Music
+	BITE_SFX = null
+	PORTAL_SFX = null
+	SPRING_SFX = null
+	SWITCH_SFX = null
 	
 func _ready():
 	init_vars()
+	init_sfx()
 	
 func emit(_global_position, count, particle_obj = null, size = 1):
 	var part = particle

@@ -13,6 +13,7 @@ var moving = false
 var scale_x = 1.0
 var scale_y = 1.0
 var dont_move = false
+var direction = "R"
 var direction_shoot = "R"
 var frame = 0
 var recorded = null
@@ -21,15 +22,23 @@ var prefix = "unknown"
 var gun_sprite : AnimatedSprite2D = null
 var gun_shoot_point : Marker2D = null
 var bullet_ttl = 1.0
+var is_absorved = false
+
+func mega_jump():
+	Global.emit(global_position, 2)
+	Global.play_sound(Global.SPRING_SFX)
+	velocity.y = JUMP_VELOCITY * 2
 
 func _ready() -> void:
 	add_to_group("players")
 	set_init(prefix)
 	
+func absorved():
+	is_absorved = true
+	
 func set_init(_prefix):
 	prefix = _prefix
-	$pistol.visible = false
-	$machine.visible = false
+	guns_hide()
 	
 	if prefix == "":
 		bullet_ttl = 1.0
@@ -69,8 +78,18 @@ func set_init(_prefix):
 	$sprite.play(prefix + "_idle")
 	if recorded == null:
 		Global.player_obj = self
+		
+func guns_hide():
+	$pistol.visible = false
+	$machine.visible = false
 
 func _physics_process(delta: float) -> void:
+	if Global.WIN:
+		if is_absorved:
+			visible = false
+			guns_hide()
+			return
+	
 	if shoot_delay > 0:
 		shoot_delay -= 1 * delta
 	
@@ -151,6 +170,7 @@ func _physics_process(delta: float) -> void:
 	if !dont_move and left:
 		$shield.visible = false
 		direction_shoot = "L"
+		direction = "L"
 		velocity.x = -1 * SPEED
 		moving = true
 		$sprite.flip_h = true
@@ -158,6 +178,7 @@ func _physics_process(delta: float) -> void:
 	elif !dont_move and right:
 		$shield.visible = false
 		direction_shoot = "R"
+		direction = "R"
 		velocity.x = 1 * SPEED
 		moving = true
 		$sprite.flip_h = false
@@ -201,7 +222,17 @@ func _physics_process(delta: float) -> void:
 			$sprite.play(prefix + "_idle")
 
 		move_and_slide()
-
+		
+		var slide_col = get_slide_collision_count()
+		var push_something = false
+		for i in slide_col:
+			var c = get_slide_collision(i)
+			var col = c.get_collider() 
+			var normal = c.get_normal()
+			if col.is_in_group("interactuable") and normal.y == 0:
+				push_something = true
+				col.pushed(SPEED, direction)
+		
 func shoot():
 	if prefix == "rock":
 		$shield.visible = true

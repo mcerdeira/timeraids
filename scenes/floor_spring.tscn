@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bpxdx1ytx61xe"]
+
+[ext_resource type="Script" uid="uid://d4lbunc6vhv5d" path="res://scenes/floor_spring.gd" id="1_b0oal"]
+[ext_resource type="Texture2D" uid="uid://dxy21gi32d4bj" path="res://sprites/floor_spr_spring.png" id="2_2wf14"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8sfu"]
+size = Vector2(13, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7rqct"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2wf14")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yc548"]
+size = Vector2(30, 31)
+
+[node name="floor_spring" type="CharacterBody2D" unique_id=736725250]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_b0oal")
+
+[node name="char_detect" type="Area2D" parent="." unique_id=1983625960]
+position = Vector2(0, -64)
+collision_layer = 3
+collision_mask = 3
+
+[node name="collider" type="CollisionShape2D" parent="char_detect" unique_id=1110719494]
+position = Vector2(-0.5, 44)
+shape = SubResource("RectangleShape2D_l8sfu")
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1413624101]
+sprite_frames = SubResource("SpriteFrames_7rqct")
+
+[node name="collider" type="CollisionShape2D" parent="." unique_id=514556899]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_yc548")
+
+[node name="up" type="Marker2D" parent="." unique_id=1704825852]
+position = Vector2(0, -32)
+
+[node name="down" type="Marker2D" parent="." unique_id=252965962]
+
+[connection signal="body_entered" from="char_detect" to="." method="_on_char_detect_body_entered"]

@@ -3,7 +3,6 @@ extends Node2D
 var camera_shake_intensity = 0.0
 var camera_shake_duration = 0.0
 
-
 enum Type {Random, Sine, Noise}
 
 func _ready():

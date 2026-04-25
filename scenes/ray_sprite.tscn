@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://d1wtc4x0q3p11"]
+
+[ext_resource type="Texture2D" uid="uid://be4hvq51abn7o" path="res://sprites/power_glove_bullet.png" id="1_dljhh"]
+[ext_resource type="Texture2D" uid="uid://c0jos3yl0f75w" path="res://sprites/power_glove_bullet1.png" id="2_ckw6m"]
+[ext_resource type="Texture2D" uid="uid://cri5276nhjj1d" path="res://sprites/power_glove_bullet2.png" id="3_unqa3"]
+[ext_resource type="Texture2D" uid="uid://dwffyvaabpg63" path="res://sprites/power_glove_bullet3.png" id="4_4kxta"]
+[ext_resource type="Texture2D" uid="uid://dgwi32xvyh7q0" path="res://sprites/power_glove_bullet4.png" id="5_a07xw"]
+[ext_resource type="Texture2D" uid="uid://bphqulh7thkq5" path="res://sprites/power_glove_bullet5.png" id="6_t0kky"]
+[ext_resource type="Script" path="res://scenes/ray_sprite.gd" id="7_n4a53"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a20f7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dljhh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ckw6m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_unqa3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4kxta")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_a07xw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_t0kky")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ray_sprite" type="AnimatedSprite2D"]
+self_modulate = Color(1.5, 1.5, 1.5, 1)
+sprite_frames = SubResource("SpriteFrames_a20f7")
+autoplay = "default"
+frame_progress = 0.947422
+offset = Vector2(277, 2)
+script = ExtResource("7_n4a53")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

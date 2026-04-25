@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dg3l8l3rqgf4t"]
+
+[ext_resource type="Texture2D" uid="uid://n2eadfmc0v11" path="res://sprites/switch.png" id="1_n6u3i"]
+[ext_resource type="Script" uid="uid://dmc5gucypfpmu" path="res://scenes/switch.gd" id="1_t47dl"]
+[ext_resource type="Texture2D" uid="uid://0cawfuok00ss" path="res://sprites/switch2.png" id="3_x705e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_86l3i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_n6u3i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_x705e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4573d"]
+size = Vector2(32, 16)
+
+[node name="switch" type="Area2D" unique_id=1934981587]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_t47dl")
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1677882885]
+sprite_frames = SubResource("SpriteFrames_86l3i")
+
+[node name="collider" type="CollisionShape2D" parent="." unique_id=458734120]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_4573d")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
