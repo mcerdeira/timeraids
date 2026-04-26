@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bki21tir7kjix"]
+
+[ext_resource type="Script" uid="uid://bq2xgekdxwxq7" path="res://scenes/mushroom.gd" id="1_0bdi0"]
+[ext_resource type="Texture2D" uid="uid://wmrrmd1ut24t" path="res://sprites/floor_spr_mushroom.png" id="2_0bdi0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7rqct"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0bdi0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yc548"]
+size = Vector2(30, 31)
+
+[node name="mushroom" type="CharacterBody2D" unique_id=736725250]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_0bdi0")
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1413624101]
+sprite_frames = SubResource("SpriteFrames_7rqct")
+
+[node name="collider" type="CollisionShape2D" parent="." unique_id=514556899]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_yc548")
+
+[node name="up" type="Marker2D" parent="." unique_id=1704825852]
+position = Vector2(0, -32)
+
+[node name="down" type="Marker2D" parent="." unique_id=252965962]

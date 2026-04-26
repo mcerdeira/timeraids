@@ -12,6 +12,7 @@ var tween: Tween
 var selected_index = 0
 
 func _ready():
+	visible = true
 	chars = $Chars.get_children()
 	step_angle = TAU / chars.size()
 	update_layout(true)

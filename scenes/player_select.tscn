@@ -61,7 +61,7 @@ char = 3
 char = 4
 
 [node name="PlayerSel6" parent="Chars" unique_id=1523133101 instance=ExtResource("2_iu05h")]
-char = -1
+char = 5
 
 [node name="PlayerSel7" parent="Chars" unique_id=707602563 instance=ExtResource("2_iu05h")]
 char = -1

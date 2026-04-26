@@ -25,8 +25,8 @@ var PORTAL_SFX = null
 var SPRING_SFX = null
 var SWITCH_SFX = null
 
-var character_names = ["Pistol", "Machine", "Bombo!", "Moth Man", "Rock-O", "??"]
-var character_ids = ["", "machine", "bomb", "moth", "rock", "unknown"]
+var character_names = ["Pistol", "Machine", "Bombo!", "Moth Man", "Rock-O", "Fungi", "??"]
+var character_ids = ["", "machine", "bomb", "moth", "rock", "mushroom", "unknown"]
 
 func save_game():
 	pass

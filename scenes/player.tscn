@@ -20,9 +20,13 @@
 [ext_resource type="Texture2D" uid="uid://doy1oe158pb3q" path="res://sprites/moth_player_spr_1.png" id="16_4r5pv"]
 [ext_resource type="Texture2D" uid="uid://8whoafoyaf5l" path="res://sprites/moth_player_spr_2.png" id="17_60mlk"]
 [ext_resource type="Texture2D" uid="uid://vhac7eqih4qa" path="res://sprites/rock_player_spr_0.png" id="18_4ni07"]
+[ext_resource type="Texture2D" uid="uid://4t00m5qbb1yb" path="res://sprites/mushroom_player_spr_0.png" id="18_31cv2"]
 [ext_resource type="Texture2D" uid="uid://1kk231bd0m5r" path="res://sprites/rock_player_spr_3.png" id="19_l71n6"]
+[ext_resource type="Texture2D" uid="uid://gmiouh8gxicq" path="res://sprites/mushroom_player_spr_3.png" id="19_pf23h"]
+[ext_resource type="Texture2D" uid="uid://cnsw1n34b53fu" path="res://sprites/mushroom_player_spr_1.png" id="20_dt7fs"]
 [ext_resource type="Texture2D" uid="uid://ca6ek3irejb5j" path="res://sprites/rock_player_spr_1.png" id="20_ke2ow"]
 [ext_resource type="Texture2D" uid="uid://dg1six2jx2f6s" path="res://sprites/rock_player_spr_2.png" id="21_ujl30"]
+[ext_resource type="Texture2D" uid="uid://ccqcbe3nha4yx" path="res://sprites/mushroom_player_spr_2.png" id="21_wqfne"]
 [ext_resource type="Texture2D" uid="uid://btwwy1gjsvto2" path="res://sprites/unknown.png" id="22_l71n6"]
 [ext_resource type="Texture2D" uid="uid://dtkthuobokjte" path="res://sprites/shield.png" id="25_ke2ow"]
 
@@ -118,6 +122,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("18_31cv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_pf23h")
+}],
+"loop": true,
+"name": &"mushroom_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_dt7fs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_wqfne")
+}],
+"loop": true,
+"name": &"mushroom_running",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("18_4ni07")
 }, {
 "duration": 1.0,
@@ -191,7 +217,7 @@ script = ExtResource("1_3vyb7")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1949041322]
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"rock_idle"
+animation = &"mushroom_running"
 offset = Vector2(0, -16)
 
 [node name="dummy" type="AnimatedSprite2D" parent="." unique_id=1858926175]

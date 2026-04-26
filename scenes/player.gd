@@ -5,6 +5,7 @@ var shoot_delay = 0.0
 var shoot_delay_total = 0.0
 var bullet_obj = preload("res://scenes/bullet.tscn")
 var explosion_obj = preload("res://scenes/explosion.tscn")
+var mushroom_obj = preload("res://scenes/mushroom.tscn")
 var jump_ttl_total = 0.5
 var jump_ttl = 0.0
 var jumping = false
@@ -52,6 +53,12 @@ func set_init(_prefix):
 		shoot_delay_total = 0.1
 	elif prefix == "bomb":
 		SPEED = 375.0
+		bullet_ttl = 0.0
+		gun_sprite = $dummy
+		gun_shoot_point = null
+		shoot_delay_total = 0.0
+	elif prefix == "mushroom":
+		SPEED = 475.0
 		bullet_ttl = 0.0
 		gun_sprite = $dummy
 		gun_shoot_point = null
@@ -241,6 +248,19 @@ func shoot():
 		var exp = explosion_obj.instantiate()
 		exp.global_position = global_position
 		get_parent().add_child(exp)
+		visible = false
+		dont_move = true
+	if prefix == "mushroom":
+		$collider.set_deferred("disabled", true)
+		Global.shaker_obj.shake(10, 3)
+		var pos = [Vector2(0, 0), Vector2(32, 0), Vector2(-32, 0), 
+				  Vector2(0, -32), Vector2(32, -32), Vector2(-32, -32),
+				  Vector2(0, -64), Vector2(32, -64), Vector2(-32, -64)]
+		for p in pos:
+			var exp = mushroom_obj.instantiate()
+			exp.global_position = global_position + p
+			get_parent().add_child(exp)
+		
 		visible = false
 		dont_move = true
 	else:

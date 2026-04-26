@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c3bqkinyg340s" path="res://sprites/bomb_player_spr_0.png" id="4_2vrqh"]
 [ext_resource type="Texture2D" uid="uid://7ihgo45eiu1q" path="res://sprites/moth_player_spr_0.png" id="5_2vrqh"]
 [ext_resource type="Texture2D" uid="uid://vhac7eqih4qa" path="res://sprites/rock_player_spr_0.png" id="6_q12qn"]
+[ext_resource type="Texture2D" uid="uid://4t00m5qbb1yb" path="res://sprites/mushroom_player_spr_0.png" id="7_a6oap"]
 [ext_resource type="Texture2D" uid="uid://btwwy1gjsvto2" path="res://sprites/unknown.png" id="7_xk0dj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4dhf0"]
@@ -25,6 +26,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_q12qn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_a6oap")
 }],
 "loop": true,
 "name": &"default",
